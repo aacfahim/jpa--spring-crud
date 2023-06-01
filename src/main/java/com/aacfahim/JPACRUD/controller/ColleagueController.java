@@ -41,17 +41,6 @@ public class ColleagueController {
     }
 
 
-    @ExceptionHandler
-    public ResponseEntity<ResponseModel> handleException(NotFoundException e){
-        ResponseModel error = new ResponseModel();
-        error.setStatusCode(HttpStatus.NOT_FOUND.value());
-        error.setMessage(e.getMessage());
-        error.setTimestamp(System.currentTimeMillis());
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-
-
     @DeleteMapping("/delete/{id}")
     private void inactive(@PathVariable("id") int id){
         colleaguesService.inactive(id);
