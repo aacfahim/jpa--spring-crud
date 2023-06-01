@@ -50,6 +50,11 @@ public class ColleaguesService {
        colleaguesRepository.deleteById(phone);
     }
 
+    public long getColleagueCount(){
+
+       return colleaguesRepository.count();
+    }
+
 
 
 
