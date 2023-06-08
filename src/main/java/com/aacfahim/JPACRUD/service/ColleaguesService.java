@@ -2,8 +2,10 @@ package com.aacfahim.JPACRUD.service;
 
 import com.aacfahim.JPACRUD.model.Colleagues;
 import com.aacfahim.JPACRUD.repository.ColleaguesRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.server.Cookie;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.sql.Array;
@@ -29,10 +31,11 @@ public class ColleaguesService {
        return colleaguesRepository.findById(num).get();
    }
 
+
    public Colleagues changeDesignation(String designation, int phone){
        Colleagues UpdatedColleague =  colleaguesRepository.findById(phone).get();
        UpdatedColleague.setDesignation(designation);
-       return UpdatedColleague;
+       return colleaguesRepository.save(UpdatedColleague);
    }
 
     public Colleagues changeSalary(int salary, int phone){

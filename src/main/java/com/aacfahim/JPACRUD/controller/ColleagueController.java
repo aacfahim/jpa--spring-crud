@@ -5,10 +5,12 @@ import com.aacfahim.JPACRUD.model.ResponseModel;
 import com.aacfahim.JPACRUD.service.ColleaguesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -47,7 +49,8 @@ public class ColleagueController {
     }
 
     @PostMapping("/designation/{id}")
-    private Colleagues changeDesignation(String designation, @PathVariable("id") int id){
+    private Colleagues changeDesignation(@RequestBody Map<String, String> request, @PathVariable("id") int id){
+        String designation = request.get("designation").trim();
         return colleaguesService.changeDesignation(designation, id);
     }
 
