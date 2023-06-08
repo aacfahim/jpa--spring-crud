@@ -54,6 +54,12 @@ public class ColleagueController {
         return colleaguesService.changeDesignation(designation, id);
     }
 
+    @PostMapping("/increment/{id}")
+    private Colleagues increment(@RequestBody Map<String, Integer> request, @PathVariable("id") int id){
+        int salary = request.get("num");
+        return colleaguesService.changeSalary(salary, id);
+    }
+
 
 
 

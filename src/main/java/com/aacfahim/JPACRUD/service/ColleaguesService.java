@@ -38,10 +38,12 @@ public class ColleaguesService {
        return colleaguesRepository.save(UpdatedColleague);
    }
 
-    public Colleagues changeSalary(int salary, int phone){
+    public Colleagues changeSalary(int increment, int phone){
         Colleagues UpdatedColleague =  colleaguesRepository.findById(phone).get();
+        int salary = UpdatedColleague.getNum();
+        salary += increment;
         UpdatedColleague.setNum(salary);
-        return UpdatedColleague;
+        return colleaguesRepository.save(UpdatedColleague);
     }
 
     public void addEmployee(Colleagues colleagues){
