@@ -19,11 +19,19 @@ public class ColleagueController {
     @Autowired
     ColleaguesService colleaguesService;
 
+//    @PostMapping("/add")
+//    private int addColleague(@RequestBody Colleagues colleagues){
+//        colleaguesService.addEmployee(colleagues);
+//        return colleagues.getPhone();
+//    }
+
     @PostMapping("/add")
-    private int addColleague(@RequestBody Colleagues colleagues){
+    private ResponseEntity<Integer> addColleague(@RequestBody Colleagues colleagues){
         colleaguesService.addEmployee(colleagues);
-        return colleagues.getPhone();
+//        return new ResponseEntity<>(colleagues.getPhone(), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(colleagues.getPhone());
     }
+
 
     @GetMapping("/all")
     private List<Colleagues> getAllColleagues(){
